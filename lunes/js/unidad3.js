@@ -5,10 +5,22 @@ let edad = 36;
 let estatura = 1.6;
 let esProfesor = true;
 
+let hobbies = ["leer", "tejer", "ver netflix"];//arreglo
+let persona = {
+    nombre: "Karol",
+    edad: 36,
+    altura: 1.6,
+    esEstudiante: true
+};// objetos -> json
+
 console.log(nombre.toUpperCase());
 console.log(edad.toString());
 console.log(estatura.toFixed(5));
 console.log(esProfesor.toString());
+
+
+console.log(persona.edad);
+console.log(hobbies[0]);// salida: tejer
 
 //{
 // todo lo que este dentro de una {} es un bloque
@@ -132,4 +144,106 @@ do {
     console.log("DOWHILE");
     console.log(edad);
 }
-while (edad < 50)
+while (edad < 50);
+
+// recibe o no
+function multiplicar(a, b) {
+    // retornar datos o no
+    let total = a * b;
+    //console.log(total);
+    return total;
+}
+
+console.log(multiplicar(5, 6));
+
+
+
+document.addEventListener("DOMContentLoaded", function () {
+    //selecciona por ID
+    let inputTarea = document.querySelector("#tarea");
+    console.log(inputTarea);
+
+    //Seleccion por class (1 clase la primera querySelector o totas querySelectorAll)
+
+    let selectSubtitulo = document.querySelectorAll(".subtitulo");
+    console.log(selectSubtitulo);
+    // seleccion por etiqueta
+
+    let selectSection = document.querySelectorAll("section");
+    console.log(selectSection);
+
+    // otra forma de seleccionar por id
+
+
+
+
+
+    // nuevo ejemplo agregue imagen
+    // seleccionar el id contenido 
+    let contenido = document.getElementById("contenido");
+    let imagen = document.createElement("img");
+    imagen.src = "./images/banner.jpg";
+
+    contenido.appendChild(imagen);
+
+
+    let mensaje_formulario = document.getElementById("mensaje");
+    mensaje_formulario.innerText = "Campos requeridos, favor confirmar estan llenos.";
+
+    mensaje_formulario.innerText = "";
+
+    let btnAgregarTarea = document.getElementById("btnAgregar");
+    let listaTareas = document.querySelector("#listaTareas");
+    let contador = 2;
+
+    btnAgregarTarea.addEventListener("click", function () {
+        // input
+        let nuevaTarea = document.getElementById("tarea");
+        let tarea = nuevaTarea.value;
+
+
+
+
+        if (tarea == "") {
+            nuevaTarea.style.borderColor = "red";
+            mostrarMensaje(1);
+            //setTimeout(mostrarMensaje(3), 2000);
+        } else {
+            nuevaTarea.style.borderColor = "black";
+            mostrarMensaje(2);
+            // setTimeout(mostrarMensaje(3), 2000);
+            // la lista de tareas (ul)
+            let nuevoLiTareas = document.createElement("li");
+            nuevoLiTareas.innerText = tarea;
+            nuevoLiTareas.dataset.tarea = contador++;
+            listaTareas.appendChild(nuevoLiTareas);
+            nuevaTarea.value = "";
+        }
+
+        function mostrarMensaje(opcion) {
+            let mensaje_formulario = document.getElementById("mensaje");
+            switch (opcion) {
+                case 1:
+                    mensaje_formulario.innerText = "Campo tarea es requerido.";
+                    break;
+                case 2:
+                    mensaje_formulario.innerText = "Tarea agregada correctamente!";
+                    break;
+            }
+
+            setTimeout(() => {
+                mensaje_formulario.innerText = "";
+            }, 2000);
+        }
+
+    })
+
+    listaTareas.addEventListener("click", function (event) {
+        let mensajelista = document.getElementById("mensajelista");
+        const id = event.target.dataset.tarea;
+        const tarea = event.target.innerText;
+
+        mensajelista.innerText = `ID: ${id} - Tarea: ${tarea}`;
+    });
+
+})
