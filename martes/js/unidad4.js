@@ -7,8 +7,8 @@ window.onload = function () {
 
     let titulo = document.getElementById("titulo");
     let imagen = document.getElementById("imagen");
-    let texto1 = document.getElementById("texto1");
-    let texto2 = document.getElementById("texto2");
+    let texto1 = document.getElementById("Bienvenidos");
+    let texto2 = document.getElementById("Práctica semanal de JavaScript");
 
     // Cambiar título
     btnTitulo.addEventListener("click", function () {
