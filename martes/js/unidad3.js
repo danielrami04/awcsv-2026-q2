@@ -9,7 +9,7 @@ let objetoPersona = {
     edad: 36,
     altura: 1.60,
     esProfesor: true
-};
+}; // json
 
 console.log(nombre);
 console.log(edad);
@@ -122,3 +122,96 @@ while (edad < 11) {
     console.log(edad);
     console.log("WHILE");
 }
+
+// parametros
+function sumar(num1, num2) {
+    // returnar valores
+    return num1 + num2;
+}
+
+function saludar() {
+    console.log("Hola!");
+}
+
+let total_suma = sumar(34, 5);
+console.log(total_suma);
+
+saludar();
+
+
+
+document.addEventListener("DOMContentLoaded", function () {
+    // seleccionar por id
+    let txtInputTarea = document.querySelector("#tarea");
+    let txtClass = document.querySelectorAll(".grupoClase");
+    console.log(txtClass);
+    let selectH2 = document.querySelectorAll("h2");
+    console.log(selectH2);
+
+
+
+
+    selectH2.forEach(element => {
+        element.innerText = "Nuevo h2";
+    });
+
+    let nuevaImagen = document.createElement("img");
+    nuevaImagen.src = "./images/banner.jpg";
+    nuevaImagen.width = "100";
+
+    let sectionPrincipal = document.getElementById("principal");
+    sectionPrincipal.appendChild(nuevaImagen);
+
+    let btnAgregar = document.getElementById("btnAgregar");
+    let contador = 2;
+    let listaTareas = document.getElementById("listaTareas");
+    btnAgregar.addEventListener("click", function () {
+        let txtTarea = document.getElementById("tarea");
+
+        if (txtTarea.value != "") {
+            txtTarea.style.borderColor = "black";
+
+            let nuevoLi = document.createElement("li");
+            nuevoLi.innerText = txtTarea.value;
+            console.log(contador);
+            nuevoLi.dataset.id = contador++;
+            listaTareas.appendChild(nuevoLi);
+            mostrarMensaje(2);
+            txtTarea.value = "";
+        } else {
+            mostrarMensaje(1);
+            txtTarea.style.borderColor = "red";
+        }
+
+    })
+
+    nuevaImagen.addEventListener("mouseover", function () {
+        console.log("mouse over")
+    })
+
+    function mostrarMensaje(opcion) {
+        let mensaje = document.getElementById("mensaje");
+        switch (opcion) {
+            case 1:
+                mensaje.innerText = "Campo obligatorio";
+                break;
+            case 2:
+                mensaje.innerText = "Tarea agregada correctamente!";
+                break;
+        }
+
+
+        setTimeout(() => {
+            mensaje.innerText = "";
+        }, 2000);
+
+    }
+
+    listaTareas.addEventListener("click", function (event) {
+        const id = event.target.dataset.id;
+        const tarea = event.target.innerText;
+
+        console.log(`ID: ${id} - Tarea: ${tarea}`);
+    });
+
+});
