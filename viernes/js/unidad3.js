@@ -131,3 +131,111 @@ do {
     edad++;
     console.log(edad, "DO WHILE");
 } while (edad < 20);
+
+function sumar(numero1, numero2) {
+    return numero1 + numero2;
+}
+
+let total = sumar(5, 6);
+console.log(total);
+
+function saludar() {
+    console.log("Hola");
+}
+
+saludar();
+
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    // etiqueta
+    let h2 = document.querySelector("h2");
+    console.log(h2);
+
+    h2.style.fontSize = "40";
+    h2.innerText = "Nuevo texto";
+    /*
+    // id
+    let tareaInput = document.getElementById("tarea");
+    //tareaInput.value = "Nueva tarea";
+    console.log(tareaInput.value);
+
+    tareaInput = document.querySelector("#tarea");
+    //tareaInput.value = "Nueva tarea";
+    console.log(tareaInput.value);
+ */
+    //clase
+    let clase = document.querySelectorAll(".grupoClase");
+    console.log(clase);
+
+    clase.forEach(element => {
+        element.style.color = "red";
+    });
+
+
+    let newImagen = document.createElement("img");
+    newImagen.src = "./images/banner.jpg";
+
+    let body = document.body;
+
+    body.appendChild(newImagen);
+
+    h2.style.color = "blue";
+
+    let btnAgregar = document.getElementById("btnAgregar");
+
+    let contador = 2;
+
+    btnAgregar.addEventListener("click", function () {
+        let tareaInput = document.getElementById("tarea");
+        let tarea = tareaInput.value;
+        let mensaje = document.getElementById("mensaje");
+        let listaTarea = document.getElementById("listaTareas");
+        if (contador <= 5) {
+            if (tarea == "") {
+                tareaInput.style.borderColor = "red";
+                mensaje.innerText = "Campo obligatorio!";
+
+            } else {
+                tareaInput.style.borderColor = "black";
+                let nuevaTareaLi = document.createElement("li");
+                nuevaTareaLi.innerText = tarea;
+                nuevaTareaLi.style.color = "red";
+                listaTarea.appendChild(nuevaTareaLi);
+                tareaInput.value = "";
+                nuevaTareaLi.dataset.tarea = contador++;
+                mensaje.innerText = "Tarea agregada!";
+
+
+            }
+        } else {
+            mensaje.innerText = "Maximo 5";
+        }
+
+
+        setTimeout(() => {
+            mensaje.innerText = "";
+        }, 2000);
+    })
+    /*
+    let btnSeleccionar = document.getElementById("btnSeleccionar");
+    btnSeleccionar.addEventListener("click", function(){
+        let seleccionarUL = document.querySelectorAll("ul li");
+        console.log(seleccionarUL);
+        let total = 0;
+        seleccionarUL.forEach(li => {
+            total += parseInt(li.innerText);
+            console.log(total);
+        });
+    })
+
+    */
+    listaTareas.addEventListener("click", function (event) {
+
+        const id = event.target.dataset.tarea;
+        const tarea = event.target.innerText;
+        console.log(`ID: ${id} - Tarea: ${tarea}`);
+    });
+
+
+})
