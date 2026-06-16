@@ -3,8 +3,36 @@
     <head>
         <title>Unidad 3</title>
         <script src="./js/unidad3.js"></script>
+        <style>
+        #principal {
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            border: 2px solid orange;
+            padding: 10px;
+        }
+
+        #tarea {
+            width: 400px;
+            padding: 10px;
+            margin: 5px;
+        }
+    </style>
     </head>
+
     <body>
+        <section id="principal">
+            <h2 class="grupoClase">Nueva Tarea</h2>
+            <span id="mensaje"></span>
+            <form>
+                <input id="tarea" name="tarea">
+                <input id="btnAgregar" type="button" value="Agregar Tarea">
+                <input id="btnSeleccionar" type="button" value="Seleccionar UL">
+            </form>
+        </section>
+        <section id="tareas">
+            <ul id="listaTareas">
+                <li data-tarea="1"  class="grupoClase">Tarea 1</li>
+            </ul>
+        </section>
 
     </body>
 </html>
